@@ -6,6 +6,8 @@ on:
 jobs:
   run-python-script: 
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: production
     steps: 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -20,5 +22,7 @@ jobs:
       
       - name: Run Python script 
         run: python main.py
+        env:
+          ENVIRONMENT: ${{ env.ENVIRONMENT }}
       
   
