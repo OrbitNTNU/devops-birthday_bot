@@ -26,18 +26,18 @@ jobs:
       - name: Add credentials.json 
         run: echo "$CREDENTIALS_JSON" > credentials.json 
         env:
-          ENVIRONMENT: ${{ env.ENVIRONMENT }}
+          ENVIRONMENT: ${{ env.Production }}
 
       - name: Debug
         run: echo "Length of CREDENTIALS_JSON is ${{ env.CREDENTIALS_JSON | length}}"
         env:
-          ENVIRONMENT: ${{ env.ENVIRONMENT }}
+          ENVIRONMENT: ${{ env.Production }}
           
       
       - name: Run Python script 
         run: python main.py
         env:
-          ENVIRONMENT: ${{ env.ENVIRONMENT }}
+          ENVIRONMENT: ${{ env.Production }}
           
       
   
