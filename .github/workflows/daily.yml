@@ -1,7 +1,10 @@
 name: daily
 on: 
+  push:
+    branches: 
+      - 'main'
   schedule:
-    - cron: '0 12 * * * '
+    - cron: '0 12 * * *'
 
 jobs:
   run-python-script: 
