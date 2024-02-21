@@ -29,7 +29,7 @@ jobs:
           ENVIRONMENT: ${{ env.ENVIRONMENT }}
 
       - name: Debug
-        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS_JSON}"
+        run: echo "Length of CREDENTIALS_JSON is$(printf '%s' "${{ CREDENTIALS_JSON }}" | wc -c)"
         env:
           ENVIRONMENT: ${{ env.ENVIRONMENT }}
           
