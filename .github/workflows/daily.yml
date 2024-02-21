@@ -29,7 +29,7 @@ jobs:
           CREDENTIALS_JSON: ${{ env.CREDENTIALS_JSON }}
 
       - name: Debug
-        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS_JSON}"
+        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS.JSON}"
         env:
           CREDENTIALS_JSON: ${{ env.CREDENTIALS_JSON }}
           
