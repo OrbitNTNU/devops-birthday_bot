@@ -26,19 +26,19 @@ jobs:
       - name: Add credentials.json 
         run: echo "$CREDENTIALS_JSON" > credentials.json 
         env:
-          CREDENTIALS_JSON: ${{ env.CREDENTIALS_JSON }}
+          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
 
       - name: Debug
-        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS.JSON}"
+        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS_JSON}"
         env:
-          CREDENTIALS_JSON: ${{ env.CREDENTIALS_JSON }}
+          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
           
       
       - name: Run Python script 
         run: python main.py
         env:
-          SLACK_APP_TOKEN: ${{ env.SLACK_APP_TOKEN }}
-          CREDENTIALS_JSON: ${{ env.CREDENTIALS_JSON }}
+          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
           
       
   
