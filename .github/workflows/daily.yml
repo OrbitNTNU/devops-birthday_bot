@@ -25,10 +25,13 @@ jobs:
 
       - name: Add credentials.json 
         run: echo "$CREDENTIALS_JSON" > credentials.json
+        env:
+          ENVIRONMENT: ${{ env.ENVIRONMENT }}
       
       - name: Run Python script 
         run: python main.py
         env:
           ENVIRONMENT: ${{ env.ENVIRONMENT }}
+          
       
   
