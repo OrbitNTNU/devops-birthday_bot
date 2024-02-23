@@ -10,7 +10,7 @@ jobs:
   run-python-script: 
     runs-on: ubuntu-latest
     env:
-      ENVIRONMENT: production
+      environment: production
     steps: 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -29,9 +29,9 @@ jobs:
           CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
 
       - name: Debug
-        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS_JSON}"
+        run: echo "Length of CREDENTIALS_JSON is ${#SLACK_APP_TOKEN}"
         env:
-          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
+          CREDENTIALS_JSON: ${{ secrets.SLACK_APP_TOKEN }}
           
       
       - name: Run Python script 
