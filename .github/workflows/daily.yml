@@ -29,9 +29,9 @@ jobs:
           CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
 
       - name: Debug
-        run: echo "Length of CREDENTIALS_JSON is ${#secrets.SLACK_APP_TOKEN}"
+        run: echo "Length of CREDENTIALS_JSON is ${#TEST}"
         env:
-          CREDENTIALS_JSON: ${{ secrets.SLACK_APP_TOKEN }}
+          TEST: ${{ secrets.TEST }}
           
       
       - name: Run Python script 
