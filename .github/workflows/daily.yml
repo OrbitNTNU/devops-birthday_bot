@@ -28,7 +28,7 @@ jobs:
         run: echo "$CREDENTIALS_JSON" > credentials.json 
 
       - name: Debug
-        run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS_JSON}"
+        run: echo "Length of file is ${#CREDENTIALS_JSON}"
           
       
       - name: Run Python script 
