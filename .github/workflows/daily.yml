@@ -10,7 +10,8 @@ jobs:
   run-python-script: 
     runs-on: ubuntu-latest
     env:
-      environment: production
+      CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
+      SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
     steps: 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -25,20 +26,14 @@ jobs:
 
       - name: Add credentials.json 
         run: echo "$CREDENTIALS_JSON" > credentials.json 
-        env:
-          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
 
       - name: Debug
         run: echo "Length of CREDENTIALS_JSON is ${#CREDENTIALS_JSON}"
-        env:
-          TEST: ${{ secrets.CREDENTIALS_JSON }}
           
       
       - name: Run Python script 
         run: python main.py
-        env:
-          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
-          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+
           
       
   
