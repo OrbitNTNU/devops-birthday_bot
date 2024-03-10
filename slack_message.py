@@ -37,14 +37,23 @@ logger = logging.getLogger(__name__)
 # ID of channel you want to post message to
 channel_id = "C06KGNYGS64"
 
-def slack_send_message(name):
-    try:
-        # Call the conversations.list method using the WebClient
-            result = client.chat_postMessage(
+def slack_send_message(name_list, response):
+   try: 
+        for user in response['members']:
+            real_name = user.get('real_name', '').split()
+            if len(real_name) >= 2 and real_name[0].lower() in name_list and real_name[1].lower() in name_list:
+                id = user.get('id')
+                result = client.chat_postMessage(
                 channel=channel_id,
-                text=f"{name} har bursdag! {birthday_wishes[random.randint(0, len(birthday_wishes)-1)]}"
+                text=f"<@{id}> har bursdag! {birthday_wishes[random.randint(0, len(birthday_wishes)-1)]}"
             )
-
-    except SlackApiError as e:
+            
+            else:
+                result = client.chat_postMessage(
+                channel=channel_id,
+                text=f"{" ".join(name_list)} har bursdag! {birthday_wishes[random.randint(0, len(birthday_wishes)-1)]}"
+            )
+                  
+   except SlackApiError as e:
             print(f"Error: {e}")
-        
+
