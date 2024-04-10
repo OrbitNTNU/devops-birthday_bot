@@ -37,23 +37,15 @@ logger = logging.getLogger(__name__)
 # ID of channel you want to post message to
 channel_id = "C06KGNYGS64"
 
-def slack_send_message(name_list, response):
-   found = False
+def slack_send_message(name_list, response, id):
    try: 
-        for user in response['members']:
-            real_name = user.get('real_name', '').split()
-            if len(real_name) >= 2 and real_name[0].lower() in name_list and real_name[1].lower() in name_list:
-                id = user.get('id')
-                print("funnet sjekk")
-                result = client.chat_postMessage(
+        if id:
+             result = client.chat_postMessage(
                 channel=channel_id,
                 text=f"<@{id}> har bursdag! {birthday_wishes[random.randint(0, len(birthday_wishes)-1)]}"
             )
-                found = True
-            
-            
-        if found == False:
-            print("false sjekk")
+                
+        else:
             result = client.chat_postMessage(
             channel=channel_id,
             text=f"{" ".join(name_list)} har bursdag! {birthday_wishes[random.randint(0, len(birthday_wishes)-1)]}"

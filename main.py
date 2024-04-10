@@ -28,11 +28,11 @@ def main():
       client = WebClient(os.environ.get("SLACK_APP_TOKEN"))
       response = client.users_list()
       # Execute SELECT query to fetch all rows from the Member table
-      cursor.execute("SELECT activeStatus, name, birthday FROM Member")
+      cursor.execute("SELECT activeStatus, name, birthday, slackID FROM Member")
       
       # Fetch all rows
       rows = cursor.fetchall()
-
+      print(rows)
       print(datetime.today().strftime("%m-%d"))
       
       #go through rows and see if birthday matches date 
@@ -40,7 +40,7 @@ def main():
           if row[0] == 1 and row[2]:
               name_list = row[1].lower().split(" ")
               if row[2].strftime("%m-%d") == datetime.today().strftime("%m-%d"):
-                slack_send_message(name_list, response)
+                slack_send_message(name_list, response, row[3])
 
 
   except Exception as e:
